@@ -1,8 +1,24 @@
 <script>
-    const playerSelection = 'scissor';
-    const computerSelection = getComputerChoice();
-    console.log(computerSelection);
-    console.log(playGame(playerSelection, computerSelection));
+    let winCounter = 0;
+    let loseCounter = 0;
+
+    game();
+
+    function game() {
+        const playerSelection = prompt('Please enter "rock", "paper" or "scissor"');
+        
+        for (let i = 0; i < 5; i++) {
+            const computerSelection = getComputerChoice();
+            console.log(playGame(playerSelection, computerSelection));
+        }
+        if (winCounter > loseCounter) {
+            console.log('You win!');
+        } 
+        else if (loseCounter > winCounter) {
+            console.log('You lose!');
+        } 
+        else console.log('Draw!');
+    }
 
     function getComputerChoice() {
         let options = [
@@ -22,16 +38,34 @@
             return 'Draw!';
         }
         else if (playerSelection == 'rock') {
-            if (computerSelection == 'paper') return 'You lose! Paper beats rock!';
-            else return 'You win! Rock beats scissor!';
+            if (computerSelection == 'paper') {
+                loseCounter++;
+                return 'You lose! Paper beats rock!';
+            }
+            else {
+                winCounter++;
+                return 'You win! Rock beats scissor!';
+            }
         }
         else if (playerSelection == 'paper') {
-            if (computerSelection == 'scissor') return 'You lose! Scissor beats paper!';
-            else return 'You win! Paper beats rock!';
+            if (computerSelection == 'scissor') {
+                loseCounter++;
+                return 'You lose! Scissor beats paper!';
+            }
+            else {
+                winCounter++;
+                return 'You win! Paper beats rock!';
+            }
         }
         else if (playerSelection == 'scissor') {
-            if (computerSelection == 'rock') return 'You lose! Rock beats scissor!';
-            else return 'You win! Scissor beats paper!';
+            if (computerSelection == 'rock') {
+                loseCounter++;
+                return 'You lose! Rock beats scissor!';
+            }
+            else {
+                winCounter++;
+                return 'You win! Scissor beats paper!';
+            }
         }
     }
 </script>
