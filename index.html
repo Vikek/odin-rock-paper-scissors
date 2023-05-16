@@ -1,12 +1,37 @@
 <script>
+    const playerSelection = 'scissor';
+    const computerSelection = getComputerChoice();
+    console.log(computerSelection);
+    console.log(playGame(playerSelection, computerSelection));
+
     function getComputerChoice() {
         let options = [
-        'Rock',
-        'Paper',
-        'Scissor'];
+        'rock',
+        'paper',
+        'scissor'];
 
         let randomNumber = Math.floor(Math.random() * options.length);
 
         return options[randomNumber];
+    }
+
+    function playGame(playerSelection, computerSelection) {
+        playerSelection = playerSelection.toLowerCase();
+
+        if (playerSelection == computerSelection) {
+            return 'Draw!';
+        }
+        else if (playerSelection == 'rock') {
+            if (computerSelection == 'paper') return 'You lose! Paper beats rock!';
+            else return 'You win! Rock beats scissor!';
+        }
+        else if (playerSelection == 'paper') {
+            if (computerSelection == 'scissor') return 'You lose! Scissor beats paper!';
+            else return 'You win! Paper beats rock!';
+        }
+        else if (playerSelection == 'scissor') {
+            if (computerSelection == 'rock') return 'You lose! Rock beats scissor!';
+            else return 'You win! Scissor beats paper!';
+        }
     }
 </script>
