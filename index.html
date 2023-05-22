@@ -1,8 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissor">Scissor</button>
+    
+</body>
 <script>
     let winCounter = 0;
     let loseCounter = 0;
+    let playerSelection = "";
 
-    game();
+    //game();
+    let btnRock = document.querySelector("#rock");
+    btnRock.addEventListener("click", function() {
+        playerSelection = "rock";
+        playGame(playerSelection, getComputerChoice());
+    });
+
+    let btnPaper = document.querySelector("#paper");
+    btnPaper.addEventListener("click", function() {
+        playerSelection = "paper";
+        playGame(playerSelection, getComputerChoice());
+    });
+
+    let btnScissor = document.querySelector("#scissor");
+    btnScissor.addEventListener("click", function() {
+        playerSelection = "scissor";
+        playGame(playerSelection, getComputerChoice());
+    });
 
     function game() {
         const playerSelection = prompt('Please enter "rock", "paper" or "scissor"');
@@ -69,3 +101,4 @@
         }
     }
 </script>
+</html>
