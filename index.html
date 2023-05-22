@@ -11,6 +11,20 @@
     <button id="paper">Paper</button>
     <button id="scissor">Scissor</button>
     
+    <div>
+        Computer score:
+        <div id="computerScore"></div>
+    </div>
+
+    <div>
+        Player score:
+        <div id="playerScore"></div>
+    </div>
+
+    <div>
+        Results:
+        <div id="result"></div>
+    </div>
 </body>
 <script>
     let winCounter = 0;
@@ -36,20 +50,25 @@
         playGame(playerSelection, getComputerChoice());
     });
 
-    function game() {
-        const playerSelection = prompt('Please enter "rock", "paper" or "scissor"');
-        
-        for (let i = 0; i < 5; i++) {
-            const computerSelection = getComputerChoice();
-            console.log(playGame(playerSelection, computerSelection));
+
+
+    function checkWinner() {
+        if(winCounter < 5 && loseCounter < 5) return; //exit if there is no winner yet
+
+        let result = document.getElementById("result");
+        if(winCounter >= 5) {
+            result.append(`You win! ${winCounter} - ${loseCounter} `);
+            resetScore();
         }
-        if (winCounter > loseCounter) {
-            console.log('You win!');
-        } 
-        else if (loseCounter > winCounter) {
-            console.log('You lose!');
-        } 
-        else console.log('Draw!');
+        else if(loseCounter >= 5) {
+            result.append(`You lose! ${loseCounter} - ${winCounter} `);
+            resetScore();
+        }
+    }
+
+    function resetScore() {
+        winCounter = 0;
+        loseCounter = 0;
     }
 
     function getComputerChoice() {
@@ -72,33 +91,35 @@
         else if (playerSelection == 'rock') {
             if (computerSelection == 'paper') {
                 loseCounter++;
-                return 'You lose! Paper beats rock!';
             }
             else {
                 winCounter++;
-                return 'You win! Rock beats scissor!';
             }
         }
         else if (playerSelection == 'paper') {
             if (computerSelection == 'scissor') {
                 loseCounter++;
-                return 'You lose! Scissor beats paper!';
             }
             else {
                 winCounter++;
-                return 'You win! Paper beats rock!';
             }
         }
         else if (playerSelection == 'scissor') {
             if (computerSelection == 'rock') {
                 loseCounter++;
-                return 'You lose! Rock beats scissor!';
             }
             else {
                 winCounter++;
-                return 'You win! Scissor beats paper!';
             }
         }
+        addScore();
+    }
+
+    function addScore() {
+        document.getElementById("computerScore").innerHTML = loseCounter;
+        document.getElementById("playerScore").innerHTML = winCounter;
+
+        checkWinner();
     }
 </script>
 </html>
